@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Bral" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c59126e4-26ac-4462-9476-6f1d26d11c86">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Resultado.xml"/>
+	<queryString language="SQL">
+		<![CDATA[select  sum(qtdp) as Quantidade, sum(qtdp * valor_item) as Valor_Total, forma_pg as Forma_de_Pagamento from venda where forma_pg like '%Fiado%'
+                 union select  sum(qtdp) as Quantidade, sum(qtdp * valor_item) as Valor_Total, forma_pg as Forma_de_Pagamento from venda where forma_pg like '%Dinheiro%'
+                 union select  sum(qtdp) as Quantidade, sum(qtdp * valor_item) as Valor_Total, forma_pg as Forma_de_Pagamento from venda where forma_pg like '%Débito%'
+                 union select  sum(qtdp) as Quantidade, sum(qtdp * valor_item) as Valor_Total, forma_pg as Forma_de_Pagamento from venda where forma_pg like '%Credito%']]>
+	</queryString>
+	<field name="Quantidade" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Quantidade"/>
+	</field>
+	<field name="Valor_Total" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Valor_Total"/>
+	</field>
+	<field name="Forma_de_Pagamento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Forma_de_Pagamento"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="62">
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="30" uuid="5100bbab-6f37-4cb6-81f5-3313892f8a14"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="20" width="100" height="30" uuid="113ad48f-9019-4ce9-9296-1bfa8f197203"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="20" width="170" height="30" uuid="64d25267-e868-45b3-836d-e5037fe1d386"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de Pagamento]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="160" height="20" uuid="70a8cc7f-24ac-497e-946a-1066630d1d3b"/>
+				<textFieldExpression><![CDATA[$F{Quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="160" height="20" uuid="939964cc-20a8-488e-88a0-30d31c11bf53"/>
+				<textFieldExpression><![CDATA[$F{Valor_Total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="160" height="20" uuid="fd060256-d4da-4597-ab29-e5eace70448e"/>
+				<textFieldExpression><![CDATA[$F{Forma_de_Pagamento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
